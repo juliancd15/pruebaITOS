@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	td {
+		background-color: #E8E8E8;
+		padding: 5px;
+	}
+	table { 
+    	border-spacing: 5px;
+    	border-collapse: separate;
+	}
+</style>
+<script
+	src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+<script>
+$(function(){
+	$.ajax({
+		url : 'https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/oportuno?token=e4ab8ea0a72a5fc3ed6573f14b6bd350663167d17a9b4837870474c131f9329c',
+		
+		dataType : 'jsonp', //JSONP is used to make a cross-site request
+		success : function(response) {  //Response handler
+			var series=response.bmx.series;
+			
+			//A table is created with the data obtained
+			for (var i in series) {
+				  var serie=series[i];
+				  var reg='<tr><td>'+serie.titulo+'</td><td>'+serie.datos[0].fecha+'</td><td>'+serie.datos[0].dato+'</td></tr>'
+				  $('#result').append(reg);
+			}
+		}
+	});
+});
+</script>
+</head>
+<body>
+    <div class="container">
+        <h1>Julian Caro - Ejercicio5</h1>
+        <hr>
+<table id='result'>
+</table>
+</body>
+</html>
+
+
+
+
+    <!-- <script src="../js/ejercicio5.js"></script> -->
