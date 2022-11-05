@@ -16,7 +16,7 @@
 <script>
 $(function(){
 	$.ajax({
-		url : 'https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/oportuno?token=e4ab8ea0a72a5fc3ed6573f14b6bd350663167d17a9b4837870474c131f9329c',
+		url : 'https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/2022-10-28/2022-11-04?token=e4ab8ea0a72a5fc3ed6573f14b6bd350663167d17a9b4837870474c131f9329c',
 		
 		dataType : 'jsonp', //JSONP is used to make a cross-site request
 		success : function(response) {  //Response handler
@@ -25,8 +25,10 @@ $(function(){
 			//A table is created with the data obtained
 			for (var i in series) {
 				  var serie=series[i];
-				  var reg='<tr><td>'+serie.titulo+'</td><td>'+serie.datos[0].fecha+'</td><td>'+serie.datos[0].dato+'</td></tr>'
+				  for (i = 0; i < 6; i++ ) {
+				  var reg='<tr><td>'+serie.titulo+'</td><td>'+serie.datos[i].fecha+'</td><td>'+serie.datos[i].dato+'</td></tr>'
 				  $('#result').append(reg);
+				  }
 			}
 		}
 	});
